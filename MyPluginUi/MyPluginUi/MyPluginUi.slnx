@@ -1,0 +1,24 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../../MyPluginProject/MyPluginProject/MyPluginProject.vcxproj" Id="79b4b2fe-836b-4921-be3b-6ab4ff5228f7">
+    <BuildDependency Project="../../MyPluginUiGlue/MyPluginUiGlue/MyPluginUiGlue.vcxproj" />
+    <BuildType Solution="Debug|Any CPU" Project="Release" />
+    <Platform Solution="*|Any CPU" Project="Win32" />
+    <Platform Solution="Release|x64" Project="Win32" />
+  </Project>
+  <Project Path="../../MyPluginUiGlue/MyPluginUiGlue/MyPluginUiGlue.vcxproj" Id="175670e9-551d-4df0-abfa-02f228909e0e">
+    <BuildType Solution="Debug|Any CPU" Project="Release" />
+    <Platform Solution="*|Any CPU" Project="Win32" />
+    <Platform Solution="Release|x64" Project="Win32" />
+  </Project>
+  <Project Path="../../TestLoader/TestLoader/TestLoader.vcxproj" Id="c47e21a2-dc51-4767-96d3-23e12b55a5c8">
+    <Platform Solution="Release|Any CPU" Project="Win32" />
+  </Project>
+  <Project Path="MyPluginUi/MyPluginUi.csproj">
+    <BuildType Solution="Debug|Any CPU" Project="Release" />
+  </Project>
+</Solution>
