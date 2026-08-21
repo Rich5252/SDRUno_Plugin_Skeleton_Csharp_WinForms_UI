@@ -59,6 +59,10 @@ namespace MyPluginUi
             if (double.TryParse(txtFrequency.Text, out double mhz))
             {
                 _controller.SetVfoFrequency(Channel, mhz * 1e6);
+                RefreshFrequencyDisplay(); // SetVfoFrequency has now fully returned, so
+                                           // t_insideSetCall is back to false and this reads
+                                           // the real, settled value instead of the cached one
+                                           // the reentrant event handler used mid-call.
             }
             else
             {

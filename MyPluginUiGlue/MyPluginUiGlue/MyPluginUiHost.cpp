@@ -97,9 +97,14 @@ namespace MyPluginUiGlue
 
 		array<Object^>^ args = gcnew array<Object^>{ eventType, static_cast<int>(channel) };
 
-		if (m_form->InvokeRequired)
-			m_form->BeginInvoke(gcnew Action<int, int>(m_form, &MyPluginUi::MainForm::OnUnoEvent), args);
-		else
-			m_form->OnUnoEvent(eventType, channel);
+		// Always defer via BeginInvoke, even if we're already on the UI thread --
+		// SDRUno can fire this event synchronously/reentrantly from inside
+		// SetVfoFrequency (same thread, same call stack, not yet returned). Calling
+		// straight through here would call back into GetVfoFrequency on the same
+		// controller before SetVfoFrequency has finished, which is exactly the
+		// reentrancy issue TX Link hit and fixed with a lock. Deferring via
+		// BeginInvoke instead ensures this only runs after the current call chain
+		// has fully unwound back to the message loop.
+		m_form->BeginInvoke(gcnew Action<int, int>(m_form, &MyPluginUi::MainForm::OnUnoEvent), args);
 	}
 }
