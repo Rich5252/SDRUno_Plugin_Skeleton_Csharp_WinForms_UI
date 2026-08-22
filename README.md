@@ -21,6 +21,8 @@ MyPluginUiGlue.dll           (C++/CLI, /clr) -- owns the STA UI thread, wraps
 MyPluginUi.dll                 (pure C#, WinForms) -- your actual UI/logic
 ```
 
+NOTE: *** Put these three files in the SDRuno "CommunityPlugins" folder ***
+
 Reference direction is one-way (`MyPluginUiGlue -> MyPluginUi`), so there's no circular
 project reference: `MyPluginUi` defines `IMyPluginController` (an interface) and
 `MainForm`; `MyPluginUiGlue`'s `MyPluginControllerBridge` implements that interface.
